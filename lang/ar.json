@@ -1,0 +1,19 @@
+{
+    "auth.failed": "بيانات الاعتماد هذه غير مطابقة للسجلات.",
+    "auth.password": "كلمة المرور غير صحيحة.",
+    "auth.throttle": "محاولات تسجيل دخول كثيرة. الرجاء المحاولة بعد :seconds ثانية.",
+    "validation.accepted": "يجب قبول :attribute.",
+    "validation.confirmed": "تأكيد :attribute غير مطابق.",
+    "validation.email": "يجب أن يكون :attribute عنوان بريد إلكتروني صحيح.",
+    "validation.exists": "قيمة :attribute المختارة غير صالحة.",
+    "validation.max.string": "يجب ألا يتجاوز عدد أحرف :attribute :max حرف.",
+    "validation.min.string": "يجب ألا يقل عدد أحرف :attribute عن :min حرف.",
+    "validation.required": "حقل :attribute مطلوب.",
+    "validation.string": "يجب أن يكون :attribute نصاً.",
+    "validation.unique": ":attribute موجود مسبقاً.",
+    "validation.attributes.password": "كلمة المرور",
+    "validation.attributes.username": "اسم المستخدم",
+    "validation.attributes.email": "البريد الإلكتروني",
+    "validation.attributes.title": "العنوان",
+    "validation.attributes.description": "الوصف"
+}
