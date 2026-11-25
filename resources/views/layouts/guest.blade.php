@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="icon" type="image/png" href="{{ asset('favicon.png') }}?v=2">
+
     <title>@yield('heading', 'تسجيل الدخول') · {{ config('site.department_name') }}</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,25 +16,62 @@
     @stack('head')
     @vite(['resources/css/app.css'])
 </head>
-<body>
-    <div class="auth-page">
-        <div class="auth-card">
-            <div class="auth-head">
-                <a href="{{ route('home') }}" class="auth-brand">
-                    <span class="logo-mark">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z" />
-                            <path d="M9 12l2 2 4-4" />
-                        </svg>
-                    </span>
-                    <span>{{ config('site.department_name') }}</span>
+<body class="auth-body">
+    @php
+        $authDepartments = \App\Models\Department::orderBy('sort_order')->get();
+    @endphp
+
+    <div class="auth-shell">
+        {{-- Brand panel (hidden on small screens) --}}
+        <aside class="auth-aside">
+            <div class="hero-grid-overlay"></div>
+
+            <div class="auth-aside-inner">
+                <a href="{{ route('home') }}" class="auth-aside-logo">
+                    <img src="{{ asset('images/mashlaha-logo.jpg') }}" alt="شعار {{ config('site.organization_name') }}">
                 </a>
-                <h1>@yield('heading')</h1>
-                <p class="auth-sub">@yield('subheading')</p>
+
+                <div class="auth-aside-org">{{ config('site.organization_name') }}</div>
+                <h2 class="auth-aside-title">{{ config('site.department_name') }}</h2>
+                <p class="auth-aside-text">
+                    أرشيف موحّد يوثّق إنجازات أقسام الإدارة ومسيرة التحول الرقمي في المصلحة.
+                </p>
+
+                @if ($authDepartments->isNotEmpty())
+                    <ul class="auth-depts">
+                        @foreach ($authDepartments as $department)
+                            <li style="--dept-color: {{ $department->color }}">
+                                <span class="auth-dept-icon">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                        @include('partials.department-icon', ['icon' => $department->icon])
+                                    </svg>
+                                </span>
+                                <span>{{ $department->name }}</span>
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
             </div>
 
-            @yield('content')
-        </div>
+            <div class="auth-aside-foot">© {{ now()->year }} {{ config('site.organization_name') }}</div>
+        </aside>
+
+        {{-- Form panel --}}
+        <main class="auth-main">
+            <div class="auth-card">
+                <div class="auth-head">
+                    <a href="{{ route('home') }}" class="auth-logo" aria-label="العودة إلى الصفحة الرئيسية">
+                        <img src="{{ asset('images/mashlaha-logo.jpg') }}" alt="شعار {{ config('site.organization_name') }}">
+                    </a>
+                    <h1>@yield('heading')</h1>
+                    <p class="auth-sub">@yield('subheading')</p>
+                </div>
+
+                @yield('content')
+            </div>
+        </main>
     </div>
+
+    @stack('scripts')
 </body>
 </html>

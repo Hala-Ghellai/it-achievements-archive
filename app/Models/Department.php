@@ -38,4 +38,16 @@ class Department extends Model
             ->whereYear('achievement_at', $year)
             ->count();
     }
+
+    /** Arabic phrase for a number of works (أعمال), e.g. "عملان" or "5 أعمال". */
+    public static function countLabel(int $count): string
+    {
+        return match (true) {
+            $count === 0 => 'لا توجد أعمال',
+            $count === 1 => 'عمل واحد',
+            $count === 2 => 'عملان',
+            $count <= 10 => $count.' أعمال',
+            default => $count.' عملاً',
+        };
+    }
 }

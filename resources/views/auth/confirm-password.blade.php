@@ -23,8 +23,11 @@
             <button type="submit" class="btn btn-primary btn-block">تأكيد</button>
         </div>
 
-        <p class="auth-hint">
-            <a href="{{ route('home') }}">→ العودة إلى الأرشيف</a>
+        <p class="auth-back">
+            <a href="{{ route('home') }}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                العودة إلى الأرشيف
+            </a>
         </p>
     </form>
 @endsection

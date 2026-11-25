@@ -23,8 +23,11 @@
             <button type="submit" class="btn btn-primary btn-block">إرسال رابط إعادة التعيين</button>
         </div>
 
-        <p class="auth-hint">
-            <a href="{{ route('login') }}">→ العودة إلى تسجيل الدخول</a>
+        <p class="auth-back">
+            <a href="{{ route('login') }}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+                العودة إلى تسجيل الدخول
+            </a>
         </p>
     </form>
 @endsection

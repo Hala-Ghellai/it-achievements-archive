@@ -30,6 +30,10 @@
                     @endforeach
                 </div>
             </div>
+
+            @auth
+                <a href="{{ route('reports.index') }}" class="{{ request()->routeIs('reports.*') ? 'active' : '' }}">التقارير</a>
+            @endauth
         </nav>
 
         <div class="navbar-actions">
@@ -68,7 +72,10 @@
                 </div>
             @else
                 @if (\Illuminate\Support\Facades\Route::has('login'))
-                    <a href="{{ route('login') }}" class="btn-login">تسجيل الدخول</a>
+                    <a href="{{ route('login') }}" class="btn-login" title="تسجيل الدخول">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5M15 12H3"/></svg>
+                        <span class="btn-login-label">تسجيل الدخول</span>
+                    </a>
                 @endif
             @endauth
             <button class="nav-toggle" id="nav-toggle" aria-label="فتح القائمة" aria-expanded="false">
@@ -84,6 +91,9 @@
         @foreach ($navDepartments as $department)
             <a href="{{ route('departments.show', $department->slug) }}" class="{{ request()->routeIs('departments.show') && request()->route('department') === $department->slug ? 'active' : '' }}">{{ $department->name }}</a>
         @endforeach
+        @auth
+            <a href="{{ route('reports.index') }}" class="{{ request()->routeIs('reports.*') ? 'active' : '' }}">التقارير</a>
+        @endauth
     </div>
 </header>
 

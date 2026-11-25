@@ -7,7 +7,7 @@
         <div class="container detail-wrap">
             <div class="detail-header">
                 <a href="{{ route('departments.show', $achievement->department->slug) }}" class="back-link">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                     العودة إلى {{ $achievement->department->name }}
                 </a>
                 <h1 class="detail-title">{{ $achievement->title }}</h1>
@@ -16,7 +16,12 @@
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
                         {{ $achievement->achievement_at->translatedFormat('j F Y، H:i') }}
                     </span>
-                    <span class="badge">{{ $achievement->department->name }}</span>
+                    <a href="{{ route('departments.show', $achievement->department->slug) }}" class="badge badge-dept" style="--dept-color: {{ $achievement->department->color }}">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            @include('partials.department-icon', ['icon' => $achievement->department->icon])
+                        </svg>
+                        {{ $achievement->department->name }}
+                    </a>
                 </div>
             </div>
 

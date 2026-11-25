@@ -8,7 +8,7 @@ return new class extends Migration
 {
     /**
      * Departments of the IT Management Department.
-     * Adding a 5th department later only requires inserting a new row here.
+     * Six departments are seeded by DepartmentSeeder; adding more only requires a new row.
      */
     public function up(): void
     {
